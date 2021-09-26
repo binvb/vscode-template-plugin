@@ -1,0 +1,60 @@
+{
+  	"name": "vb-template",
+	"displayName": "vb-template",
+	"description": "vb's template",
+	"version": "0.0.1",
+	"publisher": "vbfish",
+	"engines": {
+		"vscode": "^1.60.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+        "onCommand:vb-template.createVScodeDebugger"
+	],
+	"main": "./dist/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "vb-template.createVScodeDebugger",
+				"title": "create vscode debugger"
+			}
+		],
+		"menus": {
+			"explorer/context": [
+			  {
+				"when": "explorerResourceIsFolder",
+				"command": "vb-template.createVScodeDebugger",
+				"group": "2_workspace@500"
+			  }
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "yarn run package",
+		"compile": "webpack",
+		"watch": "webpack --watch",
+		"package": "webpack --mode production --devtool hidden-source-map",
+		"test-compile": "tsc -p . --outDir out",
+		"pretest": "yarn run test-compile && yarn run compile && yarn run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.60.0",
+		"@types/glob": "^7.1.4",
+		"@types/mocha": "^9.0.0",
+		"@types/node": "14.x",
+		"@typescript-eslint/eslint-plugin": "^4.31.1",
+		"@typescript-eslint/parser": "^4.31.1",
+		"eslint": "^7.32.0",
+		"glob": "^7.1.7",
+		"mocha": "^9.1.1",
+		"typescript": "^4.4.3",
+		"ts-loader": "^9.2.5",
+		"webpack": "^5.52.1",
+		"webpack-cli": "^4.8.0",
+		"@vscode/test-electron": "^1.6.2"
+	}
+}
